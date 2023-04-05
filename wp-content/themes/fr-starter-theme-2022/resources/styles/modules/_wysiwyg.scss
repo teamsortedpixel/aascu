@@ -1,0 +1,394 @@
+//USE MIXINS TO COLOR COMBINATE CONTAINERS WITH WYSIWYG CONTAINERS!!!! SEE BELOW
+@mixin light-background-wyswiyg-styles{
+	h1, h2, h3, h4, h5, p{
+		color: $deep-navy;
+	}
+
+	h5{
+		color: $red;
+	}
+
+	blockquote{
+		color: $red;
+	}
+
+	ul, ol{
+		color: $deep-navy;
+	}
+}
+
+@mixin caption-style{
+	margin-top: 10px;
+	@include sora;
+	font-style: normal;
+	font-size: 10px;
+	line-height: 1.1;
+}
+
+@mixin dark-background-wyswiyg-styles{
+	color: $white;
+
+	h1, h2, h3, h4, h5, h6, p{
+		color: $white;
+	}
+
+	blockquote{
+		color: $red;
+	}
+
+	table{
+		>tbody{
+			tr{
+				background-color: $deep-navy;
+			}
+		}
+	}
+
+	figure.wp-caption{
+		figcaption{
+			color: $white;
+		}
+	}
+
+	ul, ol{
+		color: $white;
+	}
+}
+
+@mixin red-background-wyswiyg-styles{
+	h1, h2, h3, h4, h5{
+		color: $white;
+	}
+
+	blockquote{
+		color: $white;
+	}
+
+	ul {
+		li{
+			&::before{
+				background-color: $white;
+			}
+		}
+
+		ul{
+			li{
+				&::before{
+					border: 1px solid $white;
+				}
+			}
+
+			ul{
+				li{
+					&::before{
+						background-color: $white;
+					}
+				}
+			}
+		}
+	}
+
+	ol{
+		li{
+			&::before{
+				color: $white;
+			}
+		}
+
+		ol{
+			li{
+				&::marker{
+					color: $white;
+				}
+			}
+		}
+	}
+}
+
+.wysiwyg-content{
+	overflow-wrap: break-word;
+
+	h1, h2, h3, h4, h5, h6, p{
+		margin-top: 0;
+	}
+
+	h1, h2, h3, h4{
+		@include sora-bold;
+	}
+
+	p::empty{
+		display: none;
+	}
+
+	h5{
+		@include raleway-bold;
+	}
+
+	h6, p{
+		@include raleway;
+	}
+
+	blockquote{
+		@include sora-bold;
+	}
+
+	a:not(.cta-button):not(.button):not(.alt-btn):not(.badge){
+		color: $red;
+	}
+
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+
+	&>:last-child{
+		&:not(div):not(image){
+			margin-bottom:0;
+		}
+	}
+
+	ol, ul{
+		padding-left: 24px;
+		list-style: none;
+		margin-bottom: 30px;
+	}
+
+	ul {
+		li{
+			position: relative;
+
+			&::before{
+				position: absolute;
+				content: "";
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				top: 6px;
+				left: -24px;
+				background-color: $red;
+			}
+
+			+li{
+				margin-top: 10px;
+
+				ul{
+					margin-top: 10px;
+					margin-bottom: 0;
+				}
+			}
+
+		}
+
+		ul{
+			li{
+				&::before{
+					background-color: transparent;
+					border: 1px solid $red;
+				}
+			}
+
+			ul{
+				li{
+					&::before{
+						border: none;
+						border-radius: 0;
+						height: 2px;
+						width: 12px;
+						margin-top: 5px;
+						border-radius: 12px;
+						background-color: $red;
+					}
+				}
+			}
+		}
+	}
+
+	ol{
+		list-style: none;
+		counter-reset: fr-lvl-1-counter;
+
+		li{
+			counter-increment: fr-lvl-1-counter;
+			position: relative;
+
+			+li{
+				margin-top: 10px;
+
+				ol{
+					margin-top: 10px;
+					margin-bottom: 0;
+				}
+			}
+
+			&::before{
+				position: absolute;
+				content: counter(fr-lvl-1-counter) ".";
+				top: 0;
+				left: -24px;
+				color: $red;
+				font-weight: bold;
+			}
+		}
+
+		ol{
+			list-style-type: lower-alpha;
+			padding-left: 18px;
+			
+			li{
+				padding-left: 6px;
+
+				&::before{
+					display: none;
+				}
+
+				&::marker{
+					font-weight: bold;
+					color: $red;
+				}
+			}
+
+			ol{
+				list-style-type: lower-roman;
+			}
+		}
+	}
+
+	table{
+		border-spacing: 10px 5px;
+		border-collapse: separate !important;
+		width: calc(100% + 20px) !important;
+		margin-left: -10px;
+
+		th{
+			@include raleway-bold;
+			text-transform: uppercase;
+			color: $white;
+		}
+
+		td{
+			@include raleway;
+			font-size: 15px;
+			line-height: 1.4;
+			color: $deep-navy;
+		}
+
+		th, td{
+			padding: 13px 15px;
+			border-radius: 3px;
+			background-color: $white;
+
+			@include breakpoint(lg down){
+				max-width: 50vw;
+			}
+
+			@include breakpoint(md down){
+				max-width: 65vw;
+			}
+
+			&:first-of-type:last-of-type{
+				@include breakpoint(lg down){
+					width: calc(#{map-get($container-max-widths, "md")} - var(--bs-gutter-x)) !important;
+					max-width: calc(#{map-get($container-max-widths, "md")} - var(--bs-gutter-x)) !important;
+				}
+
+				@include breakpoint(md down){
+					width: calc(#{map-get($container-max-widths, "sm")} - var(--bs-gutter-x)) !important;
+					max-width: calc(#{map-get($container-max-widths, "sm")} - var(--bs-gutter-x)) !important;
+				}
+
+				@include breakpoint(sm down){
+					width: calc(100vw - var(--bs-gutter-x)) !important;
+					max-width: calc(100vw - var(--bs-gutter-x)) !important;
+				}
+			}
+
+			&.th{
+				border-radius: 3px;
+				background-color: $red;
+				@include raleway-bold;
+				text-transform: uppercase;
+			}
+
+		}
+
+		thead tr th, tfoot tr th{
+			position: relative;
+			background-color: $deep-navy;
+		}
+
+		tbody{
+			tr th{
+				background-color: $red;
+			}
+		}
+	}
+
+	figure.wp-caption{
+		>img{
+			border-radius: 8px;
+		}
+
+		figcaption{
+			@include caption-style;
+		}
+	}
+
+	.wp-caption{
+		max-width: 100%;
+
+		.wp-caption-text{
+			@include caption-style;
+		}
+	}
+
+	img{
+		&.alignleft, &.aligncenter, &.alignright, &.alignnone{
+			border-radius: 8px;
+		}
+	}
+
+	//Important for images inside wysiwygs https://codex.wordpress.org/Styling_Images_in_Posts_and_Pages
+	img.alignright {float:right; margin:0 0 1em 1em}
+	img.alignleft {float:left; margin:0 1em 1em 0}
+	img.aligncenter {display: block; margin-left: auto; margin-right: auto}
+	a img.alignright {float:right; margin:0 0 1em 1em}
+	a img.alignleft {float:left; margin:0 1em 1em 0}
+	a img.aligncenter {display: block; margin-left: auto; margin-right: auto}
+
+	.fr-mobile-table-container{
+		width: 100%;
+		overflow-x: auto;
+		padding-bottom: 10px;
+
+		>table{
+			width: max-content !important;
+		}
+	}
+
+	.cta-button{
+		margin-right:15px;
+	}
+}
+
+//SEE ABOVE
+:is(.white-container, .section-bg-white){
+	.wysiwyg-content{
+		@include light-background-wyswiyg-styles;
+	}
+}
+
+:is(.dark-blue-container, .section-bg-deep-navy){
+	.wysiwyg-content{
+		@include dark-background-wyswiyg-styles;
+	}
+}
+
+.red-container{
+	.wysiwyg-content{
+		@include red-background-wyswiyg-styles;
+	}
+}
+
+.txt-white{
+	color: $white;
+}

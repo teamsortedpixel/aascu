@@ -1,0 +1,218 @@
+.layout-module{
+	$layout-module-column-gap:25px;
+	display: block;
+	> .container-fluid > .row {
+		> .block-editor-inner-blocks{
+			> .block-editor-block-list__layout{
+				>.block-list-appender{
+					display: none;
+				} 
+			}
+		}
+	}
+
+	[fr-column-inserter]{
+		background-color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		padding: 15px;
+
+		>p {
+			margin-top: 0;
+		}
+
+		.btn-group-b{
+			width: 50px;
+			height: 50px;
+			display: block;
+			background-size: contain;
+			background-position: center;
+			margin-bottom: 8px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	&.layout{
+		&-1_1{
+			> .container-fluid > .row {
+				> .block-editor-inner-blocks{
+					> .block-editor-block-list__layout{
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						width: 100%;
+
+						>div[data-block]{
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+		&-13_13_13{
+			> .container-fluid > .row {
+				> .block-editor-inner-blocks{
+					> .block-editor-block-list__layout{
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						width: 100%;
+						gap:$layout-module-column-gap;
+	
+						>div[data-block]{
+							width: calc((100% - ($layout-module-column-gap * 2)) / 3);
+						}
+					}
+				}
+			}
+		}
+
+		&-16_46_16{
+			> .container-fluid > .row {
+				> .block-editor-inner-blocks{
+					> .block-editor-block-list__layout{
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						width: 100%;
+						gap:$layout-module-column-gap;
+	
+						>div[data-block]{
+							width: calc( ((100% - ($layout-module-column-gap * 2)) * 1) / 6);
+							+div[data-block]{
+								width: calc( ((100% - ($layout-module-column-gap * 2)) * 4) / 6);
+								+div[data-block]{
+									width: calc( ((100% - ($layout-module-column-gap * 2)) * 1) / 6);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&-23_13{
+			> .container-fluid > .row {
+				> .block-editor-inner-blocks{
+					> .block-editor-block-list__layout{
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						width: 100%;
+						gap:$layout-module-column-gap;
+	
+						>div[data-block]{
+							width: calc( ((100% - ($layout-module-column-gap * 1)) * 2) / 3);
+							+div[data-block]{
+								width: calc( ((100% - ($layout-module-column-gap * 1)) * 1) / 3);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&-13_23{
+			> .container-fluid > .row {
+				> .block-editor-inner-blocks{
+					> .block-editor-block-list__layout{
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						width: 100%;
+						gap:$layout-module-column-gap;
+	
+						>div[data-block]{
+							width: calc( ((100% - ($layout-module-column-gap * 1)) * 1) / 3);
+							+div[data-block]{
+								width: calc( ((100% - ($layout-module-column-gap * 1)) * 2) / 3);
+							}
+						}
+					}
+				}
+			}
+		}
+		&-12_12{
+			> .container-fluid > .row {
+				> .block-editor-inner-blocks{
+					> .block-editor-block-list__layout{
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						width: 100%;
+						gap:$layout-module-column-gap;
+	
+						>div[data-block]{
+							width: calc(50% - ($layout-module-column-gap / 2));
+							+div[data-block]{
+								width: calc(50% - ($layout-module-column-gap / 2));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.wp-block-fr-layout-column{
+		position: relative;
+		>.fr-hide-first-opt{
+			position: absolute;
+		}
+	}
+}
+
+//for ACF styles in backend
+.fr-hide-first-opt{
+	.acf-button-group{
+		>label{
+			&:first-of-type{
+				display: none;
+				+label{
+					border-top-left-radius: 2px;
+					border-bottom-left-radius: 2px;
+				}
+			}
+		}
+	}
+}
+
+.wp-block-acf-fr-layout-column{
+	>.acf-block-component{
+		>:not(.fr--innerblocks-empty){
+			>.acf-block-preview{
+				>.fr-col{
+					> .fr-empty-slot{
+						display: none;
+					}
+				}
+			}
+		}
+		>.fr--innerblocks-empty{
+			>.acf-block-preview{
+				>.fr-col{
+					> .fr-empty-slot{
+						display: flex;
+					}
+				}
+			}
+		}
+	}
+
+	&.is-selected{
+		>.acf-block-component{
+			>div{
+				>.acf-block-preview{
+					>.fr-col{
+						> .fr-empty-slot{
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,218 @@
+<?php
+
+namespace App\Blocks;
+
+use Log1x\AcfComposer\Block;
+use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Providers\CardsDataProvider;
+
+class FeaturedResources extends Block
+{
+	/**
+	 * The block name.
+	 *
+	 * @var string
+	 */
+	public $name = 'Featured Resources';
+
+	/**
+	 * The block slug.
+	 *
+	 * @var string
+	 */
+	public $slug = 'fr-page-builder-module-featured-resources';
+
+	/**
+	 * The block description.
+	 *
+	 * @var string
+	 */
+	public $description = 'A simple Featured Resources block.';
+
+    /**
+     * The block category.
+     *
+     * @var string
+     */
+    public $category = 'fr-page-builder-content-blocks';
+
+	/**
+	 * The block icon.
+	 *
+	 * @var string|array
+	 */
+	public $icon = '';
+
+	/**
+	 * The block keywords.
+	 *
+	 * @var array
+	 */
+	public $keywords = [];
+
+	/**
+	 * The block post type allow list.
+	 *
+	 * @var array
+	 */
+	public $post_types = [];
+
+	/**
+	 * The parent block type allow list.
+	 *
+	 * @var array
+	 */
+	public $parent = ['acf/block-container'];
+
+	/**
+	 * The default block mode.
+	 *
+	 * @var string
+	 */
+	public $mode = 'preview';
+
+	/**
+	 * The default block alignment.
+	 *
+	 * @var string
+	 */
+	public $align = '';
+
+	/**
+	 * The default block text alignment.
+	 *
+	 * @var string
+	 */
+	public $align_text = '';
+
+	/**
+	 * The default block content alignment.
+	 *
+	 * @var string
+	 */
+	public $align_content = '';
+
+	/**
+	 * The supported block features.
+	 *
+	 * @var array
+	 */
+	public $supports = [
+		'align' => false,
+		'align_text' => false,
+		'align_content' => false,
+		'full_height' => false,
+		'anchor' => true,
+		'mode' => 'edit',
+		'multiple' => true,
+		'jsx' => true,
+	];
+
+	/**
+	 * The block preview example data.
+	 *
+	 * @var array
+	 */
+	public $example = [
+		'items' => [
+            [
+                'tab_title' => 'Lorem Ipsum',
+				'title' => 'Lorem ipsum dolor sit amet consectetur adipiscing',
+				'permalink' => [
+					'url' => 'https://picsum.photos',
+					'target' => '',
+					'label' => 'Read more.'
+				],
+				'image' => [
+					'url' => 'https://picsum.photos/200/110',
+					'alt' => '',
+					'caption' => 'Lorem ipsum dolor sit amet'
+				],
+                'content' => 'adipiscing elit sed do'
+            ]
+        ],
+        'title' => 'Featured Title',
+		'attributes' => [
+			'preview_image' => 'featured-resources.png'
+		],
+	];
+
+	/**
+	 * Data to be passed to the block before rendering.
+	 *
+	 * @return array
+	 */
+	public function with()
+	{
+		$blockData = [
+			'title' => get_field('title'),
+			'items' => $this->createDataArray(get_field('items')?: []),
+			'module_id' => uniqid('feat-res-')
+		];
+
+		if($this->preview && (!$blockData['items'] && !$blockData['title'])){
+			return array_merge($blockData, $this->example);
+		}
+
+		return $blockData;
+	}
+
+	/**
+	 * The block field group.
+	 *
+	 * @return array
+	 */
+	public function fields()
+	{
+		$featuredResources = new FieldsBuilder('featured_resources');
+
+		$featuredResources
+			->addText('title')
+			->addRepeater('items', [
+				'layout' => 'block',
+				'max' => 3
+			])
+				->addText('tab_title', [
+					'wrapper' => [
+						'width' => 50
+					]
+				])
+				->addPostObject('post', [
+					'post_type' => ['resource', 'news', 'event'],
+					'wrapper' => [
+						'width' => 50
+					]
+				])
+			->endRepeater();
+
+		return $featuredResources->build();
+	}
+
+	public function exampleItems() {
+		return [
+
+		];
+	}
+
+	public function createDataArray($posts){
+		$result = [];
+
+		foreach ($posts?: [] as $p) {
+			$result[] = array_merge(CardsDataProvider::get($p['post']), [
+				'tab_title' => $p['tab_title']
+			]);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Assets to be enqueued when rendering the block.
+	 *
+	 * @return void
+	 */
+	public function enqueue()
+	{
+		//
+	}
+}

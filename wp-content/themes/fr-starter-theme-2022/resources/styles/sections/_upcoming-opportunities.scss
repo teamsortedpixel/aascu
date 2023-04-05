@@ -1,0 +1,254 @@
+.upcoming-opportunities-container{
+    position: absolute;
+    top: 275px;
+    left: 100%;
+    width: 100%;
+    z-index: 998;
+
+    .upcoming-opportunities-overlay{
+        transition: all 0.3s;
+        position: fixed;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $deep-navy;
+        opacity: 0;
+    }
+
+    .upcoming-opportunities-side-label{
+        z-index: 998;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: $white;
+        color: $deep-navy;
+        position: absolute;
+        top: 25px;
+        left: -153px;
+        padding: 18px 13px;
+        font-size: 13px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        height: 60px;
+        gap: 15px;
+        overflow: hidden;
+        border: 1px solid $deep-navy;
+        border-right: none;
+        @include sora-bold;
+
+        span{
+            text-align: right;
+
+            &.label{
+                max-width: 100px;
+            }
+
+            &.arrow{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: $red;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-right: -34px;
+            }
+
+            svg{
+                transform: rotate(180deg);
+                margin-left: 8px;
+                path{
+                    fill: $white;
+                }
+            }
+        }
+
+        @include breakpoint (md down) {
+            top: 50px;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .upcoming-opportunities-slide-panel{
+        margin: 0;
+        transition: 0.3s;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 999;
+
+        .inner-container{
+            z-index: 999;
+            margin: auto;
+            width: 90%;
+            border-radius: 8px;
+            background-color: $red;
+            padding: 43px 95px;
+            box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+
+            @include breakpoint (1600px up) {
+                margin-right: 100px;
+                width: $page-builder-container-max-width;
+            }
+
+            @include breakpoint (lg down) {
+                padding: 95px 25px 43px;
+            }
+
+            @include breakpoint (md down) {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 100px;
+                border-radius: 0px;
+            }
+
+            &::before{
+                content: '';
+                background-color: $red;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 200px;
+                height: 100px;
+                z-index: -1;
+            }
+        }
+
+        .side-label-hover{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            color: $white;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            padding: 14px 18px;
+            font-size: 16px;
+            @include sora-bold;
+
+            span{
+                text-align: right;
+
+                svg{
+                    path{
+                        fill: $white;
+                    }
+                }
+            }
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        .section-label{
+            font-size: 16px;
+            color: $white;
+            text-transform: uppercase;
+        }
+
+        .event-cards{
+            display: flex;
+            flex-direction: row;
+            gap: 10px 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+
+            .fr-card{
+                margin: 0;
+                width: calc(100%/3 - 40px/3);
+
+                .card-inner{
+                    border: none;
+    
+                    .desc{
+                        margin-bottom: 0;
+                        flex: 1;
+                    }
+                }
+
+                &:hover{
+                    border-color: $black;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                }
+
+                &.column-2{
+                    width: calc(50% - 20px/2);  
+
+                    @include breakpoint (480px down) {
+                        width: 100%;
+                    }
+                }
+
+                @include breakpoint (lg down) {
+                    width: calc(50% - 20px/2);
+                }
+
+                @include breakpoint (480px down) {
+                    width: 100%;
+                }
+            }
+
+            &.event-cards-slider{
+                padding: 0;
+
+                .arrows-container{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 15px;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            &.mobile-view{
+                display: none;
+                justify-content: center;
+
+                &.event-cards-slider{
+                    margin: 0 -25px 40px;
+                    gap: 15px 20px;
+
+                    &:last-of-type{
+                        margin-bottom: 0px;
+                    }
+                }
+
+                @include breakpoint (md down) {
+                    display: flex;
+                }
+            }
+
+            @include breakpoint (md down) {
+                display: none;
+            }
+        }
+    }
+
+    &.show{
+        .upcoming-opportunities-overlay{
+            opacity: 0.7;
+        }
+
+        .upcoming-opportunities-slide-panel{
+            left: -100%;
+        }
+    }
+
+    @include breakpoint (md down) {
+        top: 97px;
+    }
+    @include breakpoint (md down){
+        display: none !important;
+    }
+}

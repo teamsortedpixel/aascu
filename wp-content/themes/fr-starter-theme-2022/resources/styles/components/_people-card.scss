@@ -1,0 +1,119 @@
+.people-card{
+	width: calc(25% - 30px/4);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	border: 1.5px solid $deep-navy;
+	border-radius: 8px;
+	padding: 0 17px 17px 17px;
+	position: relative;
+	padding-top: 67px;
+	margin: 67px 0 0 0;
+	background-color: $white;
+	text-decoration: none;
+	min-width: 250px;
+
+	&.disabled{
+		pointer-events: none;
+	}
+	
+	&:hover{
+		.profile-img{
+			border: 1.5px solid red;
+		}
+		border: 1.5px solid red;
+		background-color: $light-gray;
+	}
+
+	.profile-img{
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 134px;
+		height: 134px;
+		border-radius: 50%;
+		border: 1.5px solid $deep-navy;
+		object-fit: cover;
+
+		&.empty{
+			background-color: $deep-navy;
+			overflow: hidden;
+
+			&::before, &::after{
+				content: '';
+				position: absolute;
+				border-radius: 50%;
+			}
+
+			&::before{
+				background-color: $red;
+				border: 1.5px solid $deep-navy;
+				width: 150px;
+				height: 150px;
+				left: 37px;
+				top: -40px;
+			}
+
+			&::after{
+				border: 1.5px solid $white;
+				background-color: transparent;
+				left: 0;
+				top: 60px;
+				width: 100px;
+				height: 100px;
+			}
+		}
+	}
+
+	.card-info-wrapper{
+		margin-top: 10px;
+
+		.wysiwyg-content{
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+
+			.firstname, .lastname, .title{
+				color: $deep-navy;
+			}
+
+			.firstname, .lastname{
+				font-size: 20px;
+				text-align: center;
+			}
+
+			.lastname{
+				margin-bottom: 10px;
+			}
+
+			p{
+				margin-bottom: 6px;
+				text-align: center;
+				font-weight: 700;
+				line-height: 125%;
+
+				&.title{
+					min-height: 56.25px;
+				}
+
+				&.description{
+					color: $red;
+				}
+			}
+
+			.truncated{
+				&:hover{
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	@include breakpoint(lg down){
+		width: calc(50% - 10px/2);
+		min-width: 160px;
+	}
+}

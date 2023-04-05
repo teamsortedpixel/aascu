@@ -1,0 +1,5 @@
+.fricon{
+    &::before{
+        filter: invert(33%) sepia(65%) saturate(3554%) hue-rotate(3deg) brightness(105%) contrast(101%);
+    }
+}

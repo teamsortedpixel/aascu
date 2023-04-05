@@ -1,0 +1,445 @@
+.network-map-module{
+
+	.mobile-zoom-buttons{
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: none;
+		z-index: 1;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 4px;
+		
+		>div{
+			border: none;
+			border-radius: 50%;
+			color: $white;
+			background-color: $red;
+			font-size: 14px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 22px;
+			height: 22px;
+			filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+			&.disabled{
+				background: $light-gray;
+				filter: none;
+				color: $black;
+				pointer-events: none;
+			}
+		}
+
+		@include breakpoint(md down){
+			display: flex;
+		}
+	}
+
+	.network-map-container{
+		>.col-no-pad{
+			padding: 0;
+		}
+		.network-map-layer{
+			position: relative;
+			height: 0;
+			padding-bottom: 69.403%;
+
+			@include breakpoint(md down){
+				padding-bottom: 70.703%;
+			}
+			
+			.network-map-layer-inner{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.map-aspect-ratio-container{
+			position: relative;
+			height: 0;
+			padding-bottom: 66.011%;
+			
+			div[state-abv].highlighted{
+				z-index: 1;
+			}
+
+			.state-label{
+				@include sora-bold;
+				color: $deep-navy;
+				font-size: 14px;
+				line-height: 1;
+				position: absolute;
+				display: none;
+
+				@include breakpoint(md down){
+					font-size: 11px;
+				}
+
+				@include breakpoint(sm down){
+					font-size: 1.5vw;
+				}
+
+				>span{
+					position: relative;
+					display: block;
+
+					>b{
+						position: absolute;
+						left: 50%;
+						transform: translateX(-50%);
+						margin-top: 9px;
+						width: max-content;
+						text-align: center;
+
+						@include breakpoint(md down){
+							max-width: 80px;
+							margin-top: 3px;
+						}
+					}
+				}
+
+				&.w-circle{
+					display: none;
+					
+					.circle{
+						width: 100%;
+						height: 100%;
+						border-radius: 50%;
+						background: $red;
+						border: 1px solid $deep-navy;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						position: relative;
+						transition: background 0.15s ease-in-out;
+
+						.tooltip-container{
+							position: absolute;
+							top: calc(100% - 10px);
+							left: calc(100% - 10px);
+						}
+
+						&::before{
+							content: '';   
+							color: $white;
+							@include raleway-bold;
+							font-size: 18px;
+
+							@include breakpoint(md down){
+								font-size: 11px;
+							}
+						}
+					}
+
+					>span{
+						display: flex;
+						align-items: center;
+
+						>b{
+							left: 0;
+							transform: none;
+							margin-top: 0;
+							margin-left: 8px;
+						}
+					}
+
+
+					&.highlighted{
+						.circle{
+							cursor: pointer;
+							background: $deep-navy;
+						}
+
+						.network-map-tooltip{
+							width: max-content;
+							height: max-content;
+						}
+					}
+
+
+					&[state-abv="Bahamas"],
+					&[state-abv="Mexico"],
+					&[state-abv="Canada"]{
+						.circle{
+							.tooltip-container{
+								top: 8px;
+
+								.network-map-tooltip{
+									top: unset;
+									bottom: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		svg{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			path[state-abv]{
+				pointer-events: none;
+				transition: fill 0.15s ease-in-out;
+
+				&.highlighted{
+					fill: $red;
+				}
+			}
+			path[stroke-linecap][state-abv]{
+				display: none;
+			}
+			rect[state-abv]{
+				display: none;
+				transition: fill 0.15s ease-in-out;
+
+				&.highlighted{
+					fill: $deep-navy;
+				}
+			}
+		}
+
+		.number-container{
+			position: absolute;
+			border-radius: 50%;
+
+			.number-container-inner{
+				position: relative;
+				width: 100%;
+				height: 100%;
+				align-items: center;
+				cursor: pointer;
+
+				>span{
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+					height: 100%;
+					display: flex;
+
+					&::before{
+						content: '';   
+						color: $white;
+						@include raleway-bold;
+						font-size: 18px;
+						
+						@include breakpoint(md down){
+							font-size: 11px;
+						}
+
+						@include breakpoint(sm down){
+							font-size: 9.5px;
+						}
+					}
+				}
+
+				.tooltip-container{
+					position: absolute;
+					top: calc(100% - 10px);
+					left: calc(100% - 10px);
+
+					&.top-right-position{
+						top: 8px;
+
+						.network-map-tooltip{
+							top: unset;
+							bottom: 0;
+						}
+					}
+				}
+			}
+
+			&.highlighted{
+				.number-container-inner{
+					.network-map-tooltip{
+						width: max-content;
+						height: max-content;
+					}
+				}
+			}
+
+			&[state-abv="VI"],
+			&[state-abv="PR"]{
+				.number-container-inner{
+					.tooltip-container{
+						top: 14px;
+						
+						.network-map-tooltip{
+							top: unset;
+							bottom: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.tooltip-container-mobile{
+		display: none;
+
+		@include breakpoint(md down){
+			display: block;
+		}
+
+		.network-map-tooltip{
+			@include breakpoint(md down){
+				position: relative;
+				width: 100%;
+				height: auto;
+				overflow: initial;
+				padding-left: 0;
+				padding-right: 0;
+				padding-top: 40px;
+			}
+		}
+	}
+}
+
+/**
+*  This is added to the body tag when the javascript initializes that's why 
+*  this is a "global" selector
+*/
+.network-map-tooltip{
+	position:absolute;
+	top:0;
+	left:0;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+
+	.network-map-tooltip-inner{
+		width:300px;
+		padding:15px;
+		z-index: 1;
+		cursor: default;
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+		@include breakpoint(md down){
+			width: 100%;
+			padding: 0;
+		}
+
+		.title-container{
+			background-color: $deep-navy;
+			padding: 14px 15px;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+
+			h4{
+				font-size: 22px;
+				line-height: 1;
+				text-align: left;
+				margin: 0;
+				color: $white;
+				@include sora-bold;
+			}
+		}
+
+		.list-container{
+			max-height: 295px;
+			height: max-content;
+			width: 100%;
+			background-color: $white;
+			padding: 15px;
+			padding-right: 34px;
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+
+			ul{
+				overflow-y: auto;
+				height: max-content;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+
+				li{
+					padding: 5px 0px;
+					border-bottom: 1px solid rgba(30, 38, 66, 0.1);
+
+					p{
+						margin-bottom: 0;
+						display: flex;
+						flex-direction: column;
+						font-weight: normal;
+
+						b{
+							a{
+								color: $deep-navy;
+
+								&:hover{
+									color: $red;
+								}
+							}
+						}
+					}
+
+					&:last-of-type{
+						border: none;
+					}
+				}
+			}
+		}
+	}
+
+	.simplebar-track.simplebar-vertical{
+		width: 34px;
+		height: calc(100% - 12px - 12px);
+		margin-top: 12px;
+
+		&::before {
+			content: '';
+			width: 10px;
+			height: calc(100% - 1px);
+			position: absolute;
+			top: 1px;
+			left: calc(50% - 5px);
+			background: rgba($red, 0.1);
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
+
+		.simplebar-scrollbar{
+			left: calc(50% - 6px);
+			width: 12px;
+
+			&::before{
+				background: $red;
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.section-bg-deep-navy{
+	.network-map-module{
+		.network-map-container{
+
+			.map-aspect-ratio-container{
+				.state-label{
+					color: $white;
+				}
+			}
+
+			svg{
+				[fr-box-for]{
+					stroke: $white;
+				}
+
+				path[stroke-linecap]{
+					stroke: $white;
+				}
+			}
+		}
+	}
+}

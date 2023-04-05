@@ -1,0 +1,38 @@
+.fr-empty-slot{
+    border: 2px dashed gray;
+    border-radius: 5px;
+    padding: 54px 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(white, 0.7);
+
+    &::after{
+        content: '+';
+        font-weight: bold;
+        font-size:16px;
+        color: transparent;
+    }
+
+    &.empty-slot-content-section{
+        color: gray;
+        background-color: rbga(gray, 0.7);
+        border: none;
+        text-align: center;
+        max-width: 720px;
+        margin-bottom: 10px;
+
+        >i{
+            line-height: 1.5rem;
+            display: block;
+        }
+
+        &::after{
+            content: none;
+        }
+    }
+}

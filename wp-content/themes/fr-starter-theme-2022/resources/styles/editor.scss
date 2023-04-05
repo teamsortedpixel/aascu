@@ -1,0 +1,61 @@
+@import "app";
+
+//editor specific styles
+@import "global/page-builder-base--editor";
+@import "components/empty-slot--editor";
+@import "components/custom-appender--editor";
+@import "components/tab-panel--editor";
+@import "components/icons--editor";
+@import "modules/layout-module--editor";
+@import "modules/block-container--editor";
+@import "modules/tab-panels--editor";
+
+//Editor-specific styles to make backend's UX better
+
+// 1. Editor's Title Field
+.edit-post-visual-editor__post-title-wrapper .editor-post-title{
+    font-family: var(--bs-body-font-family);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+//2. Spacing between modules
+div[class^='wp-block-acf-fr-page-builder-module-'] + div[class^='wp-block-acf-fr-page-builder-module-'], 
+div[class*=' wp-block-acf-fr-page-builder-module-'] + div[class*=' wp-block-acf-fr-page-builder-module-'],
+div[class*=' wp-block-acf-fr-page-builder-module-'] + div[class^='wp-block-acf-fr-page-builder-module-'], 
+div[class^='wp-block-acf-fr-page-builder-module-']+ div[class*=' wp-block-acf-fr-page-builder-module-']{
+    margin-top: $spacing-between-modules;
+}
+
+.wp-block-acf-hero, .wp-block-acf-home-hero{
+    +.wp-block-acf-block-container{
+        >.acf-block-component{
+            >div{
+                >.acf-block-preview{
+                    >.fr-content-row{
+/*                         padding-top: #{$page-builder-row-vertical-padding * 2};
+
+                        @include breakpoint(md down){
+                            padding-top: #{$page-builder-row-vertical-padding-mobile * 2};
+                        } */
+                    }
+                }
+            }
+        }
+    }
+
+    +div[class^='wp-block-acf-fr-page-builder-module-'], 
+    +div[class*=' wp-block-acf-fr-page-builder-module-']{
+        padding-top: #{$page-builder-row-vertical-padding-mobile * 2};
+    }
+}
+
+.fr-hero{
+    +.fr-content-row{
+        padding-top: #{$page-builder-row-vertical-padding * 2};
+
+        @include breakpoint(md down){
+            padding-top: #{$page-builder-row-vertical-padding-mobile * 2};
+        }
+    }
+}

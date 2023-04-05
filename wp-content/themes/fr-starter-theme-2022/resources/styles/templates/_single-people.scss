@@ -1,0 +1,9 @@
+body.single-people{
+    .fr-content-row.bio-row{
+        >.container{
+            @include breakpoint(lg up){
+                padding-left: 5.5rem;
+            }
+        }
+    }
+}

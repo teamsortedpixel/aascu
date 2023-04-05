@@ -1,0 +1,39 @@
+.tab-panel{
+    padding: 5px;
+}
+
+.wp-block-acf-tab-panel{
+    >.acf-block-component{
+        >:not(.fr--innerblocks-empty){
+            >.acf-block-preview{
+                >.tab-panel{
+                    >.fr-empty-slot{
+                        display: none;
+                    }
+                }
+            }
+        }
+        >.fr--innerblocks-empty{
+            >.acf-block-preview{
+                >.tab-panel{
+                    >.fr-empty-slot{
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+    &.is-selected{
+        >.acf-block-component{
+            >div{
+                >.acf-block-preview{
+                    >.tab-panel{
+                        > .fr-empty-slot{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

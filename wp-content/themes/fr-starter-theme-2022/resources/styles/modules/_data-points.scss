@@ -1,0 +1,33 @@
+.module-data-points {
+    @include breakpoint(md down) {
+      max-width: 80%;
+      margin-bottom: 30px;
+    }
+    width: 90%;
+    min-height: 70px;
+    padding-top: 0px !important ;
+
+    > .container > .wysiwyg-content {
+      position: relative;
+    }
+  }
+
+  .data-point-circle {
+    border: 1.5px solid $red;
+    position: absolute;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    left: -45px;
+    top: -15%;
+
+    @include breakpoint(md down) {
+      border: 1.5px solid $red;
+      border-radius: 50%;
+      height: 50px;
+      left: -25px;
+      position: absolute;
+      top: -5%;
+      width: 50px;
+    }
+  }

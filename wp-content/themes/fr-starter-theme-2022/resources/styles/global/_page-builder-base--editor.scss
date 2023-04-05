@@ -1,0 +1,38 @@
+.fr-page-builder-container{
+    .fr-content-row{
+        &.vert-stack{
+            &-top, &-middle, &-bottom{
+                >.container{
+                    >.block-editor-inner-blocks{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.wp-admin .components-panel__header.interface-complementary-area-header.edit-post-sidebar__panel-tabs > ul{
+    margin: revert;
+    padding: revert;
+    padding-left: 0;
+}
+
+//hides an option for Hero block on pages such that the option won't show when you're editing a post but 
+//will show when editing a page
+body.wp-admin.post-type-post .acf-field.fr-event-type-selector > .acf-input > .acf-radio-list.acf-hl > li:last-of-type{
+    display: none;
+}
+
+body.wp-admin{
+    .wp-block-fr-page-builder{
+        .gform_media_link{
+            display: none;
+        }
+        .acf-field-fr-page-builder-module-wysiwyg-content{
+            .gform_media_link{
+                display: inline-block;
+            }
+        } 
+    }
+}

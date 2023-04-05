@@ -1,0 +1,23 @@
+.people-list-block{
+	.people-list{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: stretch;
+		gap: 40px 10px;
+
+		@include breakpoint(md down){
+			gap: 20px 10px;
+		}
+	}
+}
+
+.tooltip{
+	max-width: 200px;
+	border: 1px solid $deep-navy;
+	border-radius: 8px;
+	font-size: 10px;
+	background-color: $white;
+	padding: 7px;
+}

@@ -1,0 +1,162 @@
+.accordion-module {
+  .accordion {
+    .accordion-button {
+      display: block;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      .title,
+      .sub-title {
+        display: block;
+        max-width: 940px;
+        margin: auto;
+
+        @include breakpoint(md up) {
+          margin: 10px 95px;
+        }
+        @include breakpoint(md down) {
+          padding: 0px 18px;
+        }
+      }
+      .sub-title {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-family: 'Raleway';
+        font-weight: 700;
+      }
+
+      .title {
+        color: $deep-navy;
+        font-size: 22px;
+        margin-bottom: 8px;
+        font-weight:700;
+        font-family: 'Sora';
+      }
+
+      > span {
+        flex: 1;
+        padding-right: 15px;
+      }
+
+      &:empty {
+        display: block;
+      }
+      .badge {
+        position: absolute;
+        top: 45%;
+        right: 25px;
+        @include plus-svg;
+        height: 13px;
+        background-repeat: no-repeat;
+        background-position: right;
+
+        &::before,
+        &::after {
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        &:empty {
+          display: block;
+        }
+      }
+
+      &[aria-expanded="true"] {
+        &:empty {
+          display: block;
+        }
+        .badge {
+          @include minus-svg;
+          height: 4px;
+          background-repeat: no-repeat;
+          background-position: right;
+          position: absolute;
+          top: 45%;
+          right: 25px;
+        }
+      }
+    }
+  }
+
+  .accordion {
+    .accordion-item {
+      background-color: $white;
+      border-radius: 9px;
+      margin-bottom: 10px;
+      border: 1.5px solid $deep-navy;
+
+      &:last-of-type {
+        border: 1.5px solid $deep-navy;
+      }
+      .collapsed {
+        background-color: $light-gray;
+        border-radius: 8px !important;
+        &:hover{
+          background-color: $red;
+          .title,.sub-title{
+            color: $white;
+          }
+          .badge{
+            @include plus-svg-white;
+          }
+        }
+      }
+      &:first-of-type {
+        border: 1.5px solid $deep-navy;
+      }
+    }
+
+    .accordion-button {
+      background-color: $white;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: inherit;
+      font-weight: inherit;
+      color: $red;
+      box-shadow: none;
+
+      .collapsed {
+        background-color: $light-gray;
+        &:hover{
+          background-color: $red;
+          .title,.sub-title{
+            color: $white;
+          }
+        }
+      }
+    }
+    .accordion-body {
+      padding: 0px 0px 15px;
+      max-width: 940px;
+      margin: auto;
+
+      .wysiwyg-content{
+        @include light-background-wyswiyg-styles;
+
+        .cta-button{
+          color: $deep-navy;
+          background-color: $white;
+
+          &.primary{
+              @include cta-button-primary;
+          }
+
+          &.secondary{
+              @include cta-button-secondary;
+          }
+
+          &.tertiary{
+              @include cta-button-tertiary;
+          }
+        }
+      }
+
+      @include breakpoint(md up) {
+        margin: 0px 108px;
+      }
+
+      @include breakpoint(md down) {
+        padding: 15px 30px;
+      }
+    }
+  }
+}

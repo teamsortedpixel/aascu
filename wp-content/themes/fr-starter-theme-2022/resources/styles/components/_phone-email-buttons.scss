@@ -1,0 +1,21 @@
+.phone-email-button{
+    display: flex;
+    flex-direction: row;
+    gap: 10px 25px;
+    flex-wrap: wrap;
+
+    @include breakpoint(md down){
+        gap: 10px 13px;
+    }
+
+    &.no-arrow-buttons{
+        .cta-button{
+            padding-left: 54px;
+            padding-right: 24px;
+
+            >b{
+                display: none;
+            }
+        }
+    }
+}

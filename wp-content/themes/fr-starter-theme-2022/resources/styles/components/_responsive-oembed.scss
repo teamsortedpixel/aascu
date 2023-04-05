@@ -1,0 +1,61 @@
+.video-embed {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	border-radius: 8px;
+}
+.video-embed iframe,
+.video-embed object,
+.video-embed embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.video-embed{
+	.thumbnail-container{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $light-gray;
+		
+		.inner-overlay{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background-color: transparent;
+
+			>img{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.play-btn{
+				@include svg-play-btn;
+				background-size: contain;
+    			background-position: center;
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top: calc(50% - 50px);
+				left: calc(50% - 50px);
+				transition: transform 0.25s ease-out;
+				transform-origin: center;
+
+				&:hover{
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+}

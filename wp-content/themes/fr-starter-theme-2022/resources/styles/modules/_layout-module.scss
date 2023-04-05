@@ -1,0 +1,143 @@
+.layout-module{
+	$layout-module-gutter-size:50px;
+	>.container-fluid{
+		@include make-container();
+        padding-left: 0;
+        padding-right: 0;
+
+		>.row{
+			@include make-row();
+
+			@include breakpoint(lg down){
+				gap: calc(#{$layout-module-gutter-size} * 0.5);
+			}
+
+			> *{
+				padding-right: calc($layout-module-gutter-size * 0.5);
+    			padding-left: calc($layout-module-gutter-size * 0.5);
+
+				@include breakpoint(lg down){
+					padding-right: calc(var(--bs-gutter-x) * 0.5);
+					padding-left: calc(var(--bs-gutter-x) * 0.5);
+				}
+
+				&:first-of-type{
+					padding-left: calc(var(--bs-gutter-x) * 0.5);
+
+				}
+
+				&:last-of-type{
+					padding-right: calc(var(--bs-gutter-x) * 0.5);
+				}
+			}
+		}
+	}
+	
+	&.layout-{
+		&13_13_13{
+			>.container-fluid{
+				>.row{
+					>.fr-col{
+						@include make-col(4);
+
+						@include breakpoint(lg down){
+							@include make-col(12);
+						}
+					}
+				}
+			}
+		}
+		&16_46_16{
+			>.container-fluid{
+				>.row{
+					>.fr-col{
+						@include make-col(2);
+
+						@include breakpoint(md down){
+							@include make-col(12);
+						}
+
+						+.fr-col{
+							@include make-col(8);
+	
+							@include breakpoint(md down){
+								@include make-col(12);
+							}
+
+							+.fr-col{
+								@include make-col(2);
+		
+								@include breakpoint(md down){
+									@include make-col(12);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		&23_13{
+			>.container-fluid{
+				>.row{
+					>.fr-col{
+						@include make-col(8);
+
+						@include breakpoint(lg down){
+							@include make-col(12);
+						}
+						
+						+.fr-col{
+							@include make-col(4);
+
+							@include breakpoint(lg down){
+								@include make-col(12);
+							}
+						}
+					}
+				}
+			}
+		}
+		&13_23{
+			>.container-fluid{
+				>.row{
+					>.fr-col{
+						@include make-col(4);
+
+						@include breakpoint(lg down){
+							@include make-col(12);
+						}
+						
+						+.fr-col{
+							@include make-col(8);
+
+							@include breakpoint(lg down){
+								@include make-col(12);
+							}
+						}
+					}
+				}
+			}
+		}
+		&12_12{
+			>.container-fluid{
+				>.row{
+					>.fr-col{
+						@include make-col(6);
+
+						@include breakpoint(lg down){
+							@include make-col(12);
+						}
+						
+						+.fr-col{
+							@include make-col(6);
+
+							@include breakpoint(lg down){
+								@include make-col(12);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

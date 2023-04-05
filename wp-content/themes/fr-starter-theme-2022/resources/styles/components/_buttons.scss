@@ -1,0 +1,247 @@
+@mixin cta-button-arrow{
+    @include arrow-svg--red;
+    width: 30px;
+    height: 11.3px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    transition: background-image 0.15s ease-in-out;
+}
+
+@mixin cta-button-primary{
+    padding:18px;
+    border: 1px solid $red;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+    >b{
+        @include cta-button-arrow;
+    }
+
+    &:hover{
+        color: $white;
+        background-color: $red;
+
+        >b{
+            @include arrow-svg--deep-navy;
+        }
+    }
+}
+
+@mixin cta-button-primary--dark{
+    color: $white;
+    background-color: $deep-navy;
+
+    &:hover{
+        color: $white;
+        background-color: $red;
+
+        >b{
+            @include arrow-svg--deep-navy;
+        }
+    }
+}
+
+@mixin cta-button-secondary{
+    padding-top: 12px;
+    border-radius: 0;
+    border-top: 1.5px solid $red;
+    transition: color 0.15s ease-in-out;
+
+    >b{
+        @include cta-button-arrow;
+    }
+
+    &:hover{
+        color: $red;
+    }
+}
+
+@mixin cta-button-secondary--dark{
+    color: $white;
+
+    &:hover{
+        color: $red;
+    }
+}
+
+@mixin cta-button-tertiary{
+    border-radius: 0;
+    transition: color 0.15s ease-in-out;
+
+    >b{
+        @include cta-button-arrow;
+        @include arrow-svg--deep-navy;
+    }
+
+    &:hover{
+        color: $red;
+
+        >b{
+            @include arrow-svg--red;
+        }
+    }
+}
+
+@mixin cta-button-tertiary--dark{
+    color: $white;
+
+    >b{
+        @include arrow-svg--white;
+    }
+
+    &:hover{
+        color: $red;
+
+        >b{
+            @include arrow-svg--red;
+        }
+    }
+}
+
+.btn, .cta-button {
+    border-radius: $button-border-radius;
+    color: $deep-navy;
+    max-width: 100%;
+    @include sora-bold;
+    font-size: 14px;
+    line-height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: max-content;
+    gap: 8px;
+    text-decoration: none;
+    flex-direction: row;
+    line-height: 1.05;
+
+
+}
+
+.btn{
+    padding:18px;
+    border: 1.5px solid $red;
+}
+
+
+.cta-button{
+    text-decoration: none;
+
+    &.primary{
+        @include cta-button-primary;
+
+        &.dark{
+            @include cta-button-primary--dark;
+        }
+    }
+
+    &.secondary{
+        @include cta-button-secondary;
+
+        &.dark{
+            @include cta-button-secondary--dark;
+        }
+    }
+
+    &.tertiary{
+        @include cta-button-tertiary;
+
+        &.dark{
+            @include cta-button-tertiary--dark;
+        }
+    }
+
+    &.icon-btn{
+        position: relative;
+        padding-left: 48px;
+        
+        svg{
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            path{
+                transition: fill 0.15s ease-in-out;
+            }
+        }
+
+        &:hover{
+            svg{
+                path{
+                    fill: $white;
+                }
+            }
+        }
+    }
+}
+
+.section-bg-white, .section-bg-light-gray{
+    &.hero-section, .module-cta-button, .wysiwyg-content{
+        .cta-button{
+            &.primary{
+                @include cta-button-primary;
+            }
+
+            &.secondary{
+                @include cta-button-secondary;
+            }
+
+            &.tertiary{
+                @include cta-button-tertiary;
+            }
+        }
+    }
+}
+
+.section-bg-deep-navy{
+    &.hero-section, .module-cta-button, .wysiwyg-content{
+        .cta-button{
+            &.primary{
+                @include cta-button-primary--dark;
+            }
+
+            &.secondary{
+                @include cta-button-secondary--dark;
+            }
+
+            &.tertiary{
+                @include cta-button-tertiary--dark;
+            }
+        }
+    }
+}
+
+footer{
+    .cta-button{
+        &.primary{
+            @include cta-button-primary--dark;
+        }
+
+        &.secondary{
+            @include cta-button-secondary--dark;
+        }
+
+        &.tertiary{
+            @include cta-button-tertiary--dark;
+        }
+    }
+}
+
+.search-btn{
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    background-color: $red;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover{
+        background-color: $gray;
+    }
+}

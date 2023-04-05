@@ -1,0 +1,59 @@
+/*
+html :where(.editor-styles-wrapper) .is-root-container for backend styles in gutenberg
+*/
+
+body:not(.wp-admin) h1, html :where(.editor-styles-wrapper) .is-root-container h1 {
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 25px;
+    color:$deep-navy;
+}
+
+body:not(.wp-admin) h2, html :where(.editor-styles-wrapper) .is-root-container h2 {
+    font-size: 32px;
+    line-height: 1;
+    color:$deep-navy;
+    margin-bottom: 25px;
+}
+
+body:not(.wp-admin) h3, html :where(.editor-styles-wrapper) .is-root-container h3 {
+    font-size: 28px;
+    line-height: 1;
+    color:$deep-navy;
+    margin-bottom: 25px;
+}
+
+body:not(.wp-admin) h4, html :where(.editor-styles-wrapper) .is-root-container h4 {
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing:2.2px;
+    color:$deep-navy;
+    margin-bottom: 10px;
+}
+
+body:not(.wp-admin) h5, html :where(.editor-styles-wrapper) .is-root-container h5 {
+    font-size:  14px;
+    line-height: 1.2;
+    color:$red;
+    letter-spacing:1.4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+body:not(.wp-admin) p.large, html :where(.editor-styles-wrapper) .is-root-container p.large {
+    font-size: 18px;
+    line-height: 1.38;
+    margin-bottom: 25px;
+    color:$deep-navy;
+}
+
+body:not(.wp-admin) p, html :where(.editor-styles-wrapper) .is-root-container p {
+    font-size: 15px;
+    line-height: 1.33;
+    margin-bottom: 25px;
+    color:$deep-navy;
+}
+
+body:not(.wp-admin){
+    @include sora;
+}

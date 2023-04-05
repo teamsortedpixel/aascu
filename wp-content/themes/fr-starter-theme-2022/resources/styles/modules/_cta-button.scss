@@ -1,0 +1,20 @@
+.module-cta-button{
+    display: flex;
+    flex-direction: column;
+    &.align-left{
+        align-items: flex-start;
+    }
+
+    &.align-center{
+        align-items: center;
+    }
+
+    &.align-right{
+        align-items: flex-end;
+    }
+
+    >.cta-button{
+        display: flex;
+        align-items: center;
+    }
+}

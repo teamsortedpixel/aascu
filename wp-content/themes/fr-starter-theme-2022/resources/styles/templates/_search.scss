@@ -1,0 +1,168 @@
+body.search{
+    #main{
+        overflow: hidden;
+
+        .search-main-container{
+            padding-bottom: 100px;
+
+            .card-grid-container{
+                >.general-search-result-card{
+                    background-color: $light-gray;
+                    position: relative;
+
+                    &::before{
+                        content: '';
+                        width: 100vw;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        background-color: $light-gray;
+                    }
+
+                    >.card-inner{
+                        z-index: 1;
+                        position: relative;
+                        border: none;
+                        background: transparent;
+                        max-width: 100%;
+                    }
+
+                    &:nth-of-type(2n){
+                        background-color: $white;
+
+                        &::before{
+                            background-color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.search-hero{
+    background-color: $deep-navy;
+    padding-top: 121.5px;
+    padding-bottom: 81.5px;
+    position: relative;
+    overflow: hidden;
+
+    @include breakpoint(lg down){
+        padding-top: 85px;
+        padding-bottom: 71.5px;
+    }
+
+    &::before{
+        content: '';
+        width: 319px;
+        height: 319px;
+        background-color: $red;
+        position: absolute;
+        bottom:-81px;
+        left: calc( ((100% - #{$page-builder-container-max-width}) / 2) - 319px);
+        border-radius: 50%;
+
+        @include breakpoint(lg down){
+            width: 225px;
+            height: 225px;
+            left: calc(-225px / 2);
+            bottom: unset;
+            top: 19px;
+        }
+    }
+
+    >.container{
+        z-index: 1;
+        position: relative;
+    }
+
+    .search-bar-container{
+        >form{
+            flex-direction: row-reverse;
+
+            @include breakpoint(lg down){
+                flex-direction: row;
+            }
+
+            >label {
+                position: relative;
+
+                &::after{
+                    content: '';
+                    width: 32px;
+                    height: 50px;
+                    position: absolute;
+                    top: 16px;
+                    right: 0;
+                    @include arrow-svg--red;
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+
+                    @include breakpoint(lg down){
+                        display: none;
+                    }
+                }
+
+                @include breakpoint(md up){
+                    margin-left: calc(60px + 25px);
+                }
+    
+                >input{
+                    @include sora-bold;
+                    font-size: 32px;
+                    padding-right: 46px;
+                    width: 100%;
+
+                    @include breakpoint(lg down){
+                        padding-right: calc(32px + 12px);
+                        padding-top: 6px;
+                    }
+                }
+    
+                +.search-btn{
+                    @include breakpoint(md up){
+                        right: unset;
+                        left: 0;
+                        top: 8px;    
+                    }
+
+                    @include breakpoint(lg down){
+                        background-color: transparent;
+                        border-radius: 0;
+                        background-color: transparent;
+                        @include arrow-svg--red;
+                        background-size: contain;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        top: 15px;
+                    }
+
+                    >svg{
+                        @include breakpoint(lg down){
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        button[type=submit]{
+            width: 60px;
+            height: 60px;
+
+            @include breakpoint(lg down){
+                width: 32px;
+                height: 32px;
+            }
+
+            svg{
+                width: 100%;
+                height: 100%;
+                padding: 15px;
+            }
+        }
+    }
+}

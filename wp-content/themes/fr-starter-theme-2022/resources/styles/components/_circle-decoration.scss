@@ -1,0 +1,21 @@
+.circle-decoration{
+    position: absolute;
+    border-radius: 50%;
+
+    &.filled{
+        background-color: $red;
+    }
+
+    &.outline{
+        border: 1px solid $red;
+        background-color: transparent;
+    }
+}
+
+.fr-content-row.section-bg-deep-navy{
+    .circle-decoration{
+        &.outline{
+            border: 1px solid $white;
+        }
+    }
+}

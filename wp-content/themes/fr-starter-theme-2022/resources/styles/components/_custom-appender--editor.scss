@@ -1,0 +1,34 @@
+.block-editor-block-list__layout{
+    &.fr-custom-appender--layout-column{
+        .block-list-appender{
+            position: relative;
+            padding: 10px 15px;
+            >.block-editor-inserter{
+                >button{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &.fr-custom-appender--content-section,
+    &.fr-custom-appender--page-builder{
+        .block-list-appender{
+            position: relative;
+            padding: 10px 15px;
+            >.block-editor-inserter{
+                >button{
+                    width: 125px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+
+        >.wp-block{
+            +.block-list-appender{
+                margin-top: $spacing-between-modules;
+            }
+        }
+    }
+}

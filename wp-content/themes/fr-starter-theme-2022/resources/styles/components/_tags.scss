@@ -1,0 +1,44 @@
+.badge{
+	@include raleway-bold;
+	text-transform: uppercase;
+	cursor: default;
+	text-decoration: none;
+	
+
+	&.bg-primary, &.bg-secondary{
+		border-radius: 50px;
+	}
+
+	&.bg-primary{
+		background-color: $deep-navy;
+		color: $white;
+	}
+
+	&.bg-secondary{
+		background-color: $light-gray;
+		color: $black;
+	}
+
+	&[href]:not([href=""]){
+		transition: background-color 0.15s ease-out;
+		cursor: pointer;
+
+		&:hover{
+			background-color: $red !important;
+			color: $white !important;
+		}
+	}
+
+	&.program-badge{
+		background-color: $deep-navy;
+		color: $white;
+		border-radius: 50px;
+		padding: 5px 10.42px;
+		padding-top: 6.3px;
+		font-size: 10px;
+		white-space: normal;
+		line-height: 1.2;
+		text-align: left;
+		transition: background-color 0.15s ease-out, color 0.15s ease-out;
+	}
+}

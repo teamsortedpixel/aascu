@@ -1,0 +1,20 @@
+//USE MIXINS FOR BETTER CODE READABILITY AND PORTABILITY 
+@mixin sora{
+    font-family: 'Sora', sans-serif;
+    font-weight:400;
+}
+
+@mixin sora-bold{
+    font-family: 'Sora', sans-serif;
+    font-weight:700;
+}
+
+@mixin raleway{
+    font-family: 'Raleway', sans-serif;
+    font-weight:500;
+}
+
+@mixin raleway-bold{
+    font-family: 'Raleway', sans-serif;
+    font-weight:700;
+}

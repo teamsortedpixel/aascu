@@ -1,0 +1,286 @@
+footer.footer{
+	background-color: $deep-navy;
+	overflow: hidden;
+	min-height: 150px;
+
+	>.container{
+		>.row{
+			@include breakpoint(lg down){
+				flex-direction: column;
+			}
+		}
+	}
+
+	.top-row{
+		padding-top: 73px;
+		padding-bottom: 80px;
+
+		>.row{
+			position: relative;
+
+			&::before{
+				content: '';
+				width: 319px;
+				height: 319px;
+				border-radius: 50%;
+				background-color: $red;
+				position: absolute;
+				bottom: -173px;
+				left: -197px;
+
+				@include breakpoint(lg down){
+					display: none;
+				}
+			}
+
+			&::after{
+				content: '';
+				width: 249px;
+				height: 249px;
+				border-radius: 50%;
+				border: 1px solid $white;
+				position: absolute;
+				right: 0;
+				top: calc(100%);
+
+				@include breakpoint(md down){
+					right: -80px;
+					top: calc(100% - 125px + 80px);
+				}
+			}
+
+			@include breakpoint(lg down){
+				flex-direction: column;
+				gap: 35px;
+			}
+		}
+
+		.cta-heading-wrapper, .social-wrapper{
+			+.vertical-nav{
+				margin-top: 50.18px;
+
+				@include breakpoint(lg down){
+					margin-top: 0;
+				}
+			}
+		}
+	}
+
+	.bottom-row{
+		background-color: $dark-gray;
+		position: relative;
+		padding-top: 6px;
+		padding-bottom: 6px;
+
+		&::before{
+			content: '';
+			width: 100vw;
+			left: 50%;
+			transform: translateX(-50%);
+			position: absolute;
+			top: 0;
+			background-color: $dark-gray;
+			height: 100%;
+		}
+
+		>div{
+			position: relative;
+		}
+	}
+
+	.footer-links-cta-container{
+		@include breakpoint(md up){
+			padding-left: 25px;
+			padding-right: 0;
+		}
+
+		.footer-content-wrapper{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: flex-start;
+			justify-content: flex-start;
+			
+			@include breakpoint(lg down){
+				flex-direction: column;
+				gap: 35px;
+			}
+
+			.cta-heading-wrapper{
+				width: 100%;
+
+				&.has-social-links{
+					width: calc(100% - 135px);
+
+					@include breakpoint(lg down){
+						width: 100%;
+					}
+				}
+			}
+
+			.vertical-nav{
+				width: 100%;
+			}
+		}
+	}
+}
+
+.footer-site-info{
+	.footer-logo{
+		max-width: 224px;
+	}
+}
+
+.wysiwyg-content p.footer-cta-heading{
+	@include raleway-bold;
+	font-size: 16px;
+	line-height: 1.38;
+	margin-bottom: 12.6px;
+	letter-spacing: 1.6px;
+}
+
+.footer-secondary-nav{
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+	padding: 0;
+	margin: 0;
+	align-items: flex-start;
+	justify-content: flex-end;
+	list-style: none;
+
+	li{
+		a{
+			font-size: 14px;
+			color: $white;
+			text-decoration: none;
+		}
+	}
+}
+
+.vertical-nav{
+	display: flex;
+	gap: 18.6px;
+	flex-direction: row;
+	padding: 0;
+	margin: 0;
+	flex-wrap: wrap;
+
+	@include breakpoint(md down){
+		gap: 42px 18.6px;
+	}
+
+	>li{
+		flex: 1;
+		min-width: 140px;
+
+		@include breakpoint(lg down){
+			min-width: none;
+		}
+	}
+
+	li{
+		a{
+			@include raleway;
+			text-decoration: none;
+			color: $white !important;
+			font-size: 15px;
+			line-height: 1.4;
+			letter-spacing: 1.4px;
+			transition: color 0.15s ease-out;
+
+			&[href="#"]{
+				pointer-events: none;
+			}
+
+			&:hover{
+				&:not([href="#"]){
+					color: $red !important;
+				}
+			}
+		}
+
+
+		&.nav-item-primary{
+			a{
+				@include raleway-bold;
+				font-size: 14px;
+				text-transform: uppercase;
+				line-height: 1.57;
+			}
+		}
+
+		&.menu-item-has-children{
+			>a{
+				@include raleway-bold;
+				font-size: 14px;
+				text-transform: uppercase;
+				line-height: 1.57;
+
+				+.sub-menu{
+					margin-top: 8.5px;
+					
+					@include breakpoint(md down){
+						margin-top: 20px;
+					}
+				}
+			}
+
+			.sub-menu{
+				padding-left: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 8.5px;
+
+				@include breakpoint(md down){
+					gap: 20px;
+				}
+			}
+		}
+	}
+}
+
+.social-wrapper{
+	max-width: 135px;
+	width: 100%;
+    gap: 18px 30px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	@include breakpoint(md down){
+		max-width: 100%;
+	}
+
+	>a{
+		width: 25px;
+		height: 25px;
+		font-size: 0;
+		display:inline-block;
+		flex: 25px 0 0;
+
+		@include breakpoint(md down){
+			width: 40px;
+			height: 40px;
+			flex: 40px 0 0;
+		}
+
+		svg{
+			width: 100%;
+			height: 100%;
+			
+			path{
+				transition: fill 0.15s ease-out;
+				fill:$white;
+			}
+		}
+
+		&:hover{
+			svg{
+				path{
+					fill:$red;
+				}
+			}	
+		}
+	}
+}

@@ -1,0 +1,251 @@
+@mixin form-input-styles{
+	padding: 17px 20px;
+	@include raleway;
+	font-size: 18px;
+	line-height: 1.38;
+	border-radius: 6px;
+}
+
+main#main{
+	.gform_wrapper.gravity-theme{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: map-get($container-max-widths, "xxl");
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+
+		.gfield_label{
+			font-size: 14px;
+			text-transform: uppercase;
+			@include raleway-bold;
+		}
+
+		.gform_fields{
+			grid-column-gap:10px;
+			grid-row-gap: 35px;
+		}
+
+		.gform_validation_errors{
+			order: 100;
+			
+			>h2{
+				color: $white;
+
+				.gform-icon{
+					display: none;
+				}
+			}
+		}
+
+		.gfield_validation_message, 
+		.validation_message{
+			background: transparent;
+			padding: 0;
+			@include raleway;
+			font-size: 14px;
+			line-height: 1.57;
+			text-transform: uppercase;
+			border: none;
+		}
+
+		input[type=color],
+		input[type=date],
+		input[type=datetime-local],
+		input[type=datetime],
+		input[type=email],
+		input[type=month],
+		input[type=number],
+		input[type=password],
+		input[type=search],
+		input[type=tel],
+		input[type=text],
+		input[type=time],
+		input[type=url],
+		input[type=week],
+		select,
+		textarea {
+			@include form-input-styles;
+			border: 1px solid $deep-navy;
+		}
+
+		input:where([type="checkbox"], [type="radio"]){
+			-webkit-appearance : none;
+			appearance : none;
+			width : 15px;
+			height : 15px;
+			margin : calc(0.75em - 7.5px) 0.25rem 0 0;
+			vertical-align : top;
+		}
+		
+		input[type="checkbox"]:not(:checked),
+		input[type="radio"]:not(:checked){
+			background-color: $white;
+			border: 1px solid $deep-navy;
+			border-radius: 3px;
+			transition: background-color 0.15s ease-in-out;
+		}
+
+		input[type="radio"]:not(:checked){
+			border-radius : 50%;
+		}
+
+		input[type="checkbox"]:checked{
+			background-color: $red;
+			border-radius: 3px;
+		}
+		
+		input[type="radio"]:checked{
+			background-color: $red;
+			border-radius : 50%;
+		}
+
+		.gform_footer{
+			&.top_label{
+				justify-content: center;
+				align-items: center;
+				margin: 28px auto 8px;
+				width: fit-content;
+				position: relative;
+			}
+		} 
+
+		.gform_submit{
+			@extend .cta-button;
+			@include cta-button-primary;
+			background-color: transparent;
+			margin: 0;
+		}
+
+		.gform_ajax_spinner{
+			position: absolute;
+			right: -50px;
+			width: 30px;
+			height: 30px;
+		}
+
+		.fr-gform-no-label{
+			.gfield_label{
+				display: none;
+			}
+		}
+		
+		.fr-gform-horizontal-inputs{
+			.gfield_radio, .gfield_checkbox{
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 15px;
+
+				.gchoice{
+					width: max-content;
+
+					.gfield-choice-input+label{
+						max-width: max-content;
+					}
+				}
+			}
+		}
+	}
+
+	.gfield{
+		&.gfield_error{
+			.ginput_container{
+				input[type=color],
+				input[type=date],
+				input[type=datetime-local],
+				input[type=datetime],
+				input[type=email],
+				input[type=month],
+				input[type=number],
+				input[type=password],
+				input[type=search],
+				input[type=tel],
+				input[type=text],
+				input[type=time],
+				input[type=url],
+				input[type=week],
+				select,
+				textarea{
+					border: 1px solid $red;
+				}	
+			}
+		}
+	}
+
+	.gform_wrapper{
+		.gfield_error .gfield_repeater_cell label,
+		.gfield_error label,
+		.gfield_error legend,
+		.gfield_validation_message,
+		.validation_message,
+		[aria-invalid=true]+label,
+		label+[aria-invalid=true],
+		.gfield_required{
+			color: $red;
+		}
+	}
+
+	.gform_confirmation_wrapper .gform_confirmation_message, 
+	.gform_validation_errors {
+		border-radius: 25px;
+		background-color: $deep-navy;
+		color: $white;
+		text-align: center;
+		max-width: 350px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 11.5px 27px;
+		@include sora-bold;
+		font-size: 14px;
+		line-height: 1.4;
+	}
+
+	.gform_validation_errors{
+		background-color: $red;
+		border: none;
+
+		ol{
+			margin-top: 20px;
+			padding-left: 0;
+			text-align: left;
+
+			li{
+				color: $white;
+				list-style-position: inside;
+				list-style-type: unset !important;
+
+				a{
+					color: $white;
+					padding-left: 10px;
+				}
+			}
+		}
+	}
+
+	.section-bg-deep-navy{
+		.gform_wrapper.gravity-theme{
+			input[type="checkbox"]:not(:checked),
+			input[type="radio"]:not(:checked){
+				background-color: $deep-navy;
+				border: 1px solid $white;
+			}
+
+			.gform_submit{
+				@include cta-button-primary--dark;
+			}
+		}
+		
+		.gform_confirmation_wrapper .gform_confirmation_message, 
+		.gform_validation_errors {
+			background-color: $white;
+			color: $deep-navy;
+		}
+	
+		.gform_validation_errors{
+			background-color: $red;
+			border: none;
+		}
+	}
+}

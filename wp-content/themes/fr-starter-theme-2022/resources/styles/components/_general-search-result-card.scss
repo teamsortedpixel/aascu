@@ -1,0 +1,32 @@
+.general-search-result-card{
+    padding-top: 39px;
+    padding-bottom: 39px;
+    
+    .card-inner{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 66.6667%;
+        width: 100%;
+
+        @include breakpoint(lg down){
+            max-width: 100%;
+        }
+
+        .program-badge{
+            max-width: max-content;
+        }
+
+        .wysiwyg-content{
+            a.no-dec{
+                text-decoration: none;
+            }
+
+            mark{
+                background-color: transparent;
+                color: $red;
+                padding: 0;
+            }
+        }   
+    }
+}

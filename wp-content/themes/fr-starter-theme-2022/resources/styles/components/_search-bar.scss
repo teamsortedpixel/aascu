@@ -1,0 +1,63 @@
+.search-bar-container{
+    >form{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        position: relative;
+
+        >label{
+            flex: 1;
+
+            .validation{
+                display: none;
+                font-size: 14px;
+                font-style: italic;
+                color: $red;
+                padding-top: 5px;
+            }
+
+            >input{
+                @include sora;
+                padding: 13.5px 55px 6px 0px;
+                width: calc(100% - (45px + 12px));
+                background-color: transparent;
+                border:none;
+                border-bottom: 1.5px solid white;
+                padding-right: 56px;
+                @include sora-bold;
+                color: $white;
+
+                &:focus, &:focus-visible {
+                    outline: none;
+                }
+
+                &::placeholder {
+                    color: $light-gray;
+                }
+            }
+
+            +.search-btn{
+                margin-left: 0;
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &.is-invalid{
+                .validation{
+                    display: block;
+                }
+            }
+        }
+    }
+
+    button[type="submit"]{
+        width: 45px;
+        height: 45px;
+
+        &[disabled]{
+            pointer-events: none;
+            opacity: 0.8;
+        }
+    }
+}
